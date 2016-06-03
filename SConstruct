@@ -1451,12 +1451,12 @@ if not preconfigured:
         # just turn it off like this, but seems the only available work-
         # around. See https://svn.boost.org/trac/boost/ticket/6779 for more
         # details.
-        boost_version = [int(x) for x in env.get('BOOST_LIB_VERSION_FROM_HEADER').split('_')]
-        if not conf.CheckBoostScopedEnum():
-            if boost_version < [1, 51]:
-                env.Append(CXXFLAGS = '-DBOOST_NO_SCOPED_ENUMS')
-            elif boost_version < [1, 57]:
-                env.Append(CXXFLAGS = '-DBOOST_NO_CXX11_SCOPED_ENUMS')
+        # boost_version = [int(x) for x in env.get('BOOST_LIB_VERSION_FROM_HEADER').split('_')]
+        # if not conf.CheckBoostScopedEnum():
+        #     if boost_version < [1, 51]:
+        #         env.Append(CXXFLAGS = '-DBOOST_NO_SCOPED_ENUMS')
+        #     elif boost_version < [1, 57]:
+        #         env.Append(CXXFLAGS = '-DBOOST_NO_CXX11_SCOPED_ENUMS')
 
     if not env['HOST'] and env['ICU_LIB_NAME'] not in env['MISSING_DEPS']:
         # http://lists.boost.org/Archives/boost/2009/03/150076.php
@@ -1794,7 +1794,7 @@ if not preconfigured:
         # Common flags for g++/clang++ CXX compiler.
         # TODO: clean up code more to make -Wextra -Wsign-compare -Wsign-conversion -Wconversion viable
         # -Wfloat-equal -Wold-style-cast -Wexit-time-destructors -Wglobal-constructors -Wreserved-id-macro -Wheader-hygiene -Wmissing-noreturn
-        common_cxx_flags = '-fvisibility=hidden -fvisibility-inlines-hidden -Wall %s %s -ftemplate-depth-300 -Wsign-compare -Wshadow ' % (env['WARNING_CXXFLAGS'], pthread)
+        common_cxx_flags = '-fvisibility=hidden -fvisibility-inlines-hidden -Wall %s %s -ftemplate-depth-300 -Wsign-compare ' % (env['WARNING_CXXFLAGS'], pthread)
 
         if 'clang++' in env['CXX']:
             common_cxx_flags += ' -Wno-unsequenced -Wtautological-compare -Wheader-hygiene '
